@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Heart, Home, RefreshCw } from 'lucide-react';
+import { Heart, Home } from 'lucide-react';
 import type { Pokemon } from './types/pokemon';
 import { PokemonList } from './components/PokemonList';
 import { PokemonModal } from './components/PokemonModal';
@@ -10,7 +10,7 @@ import { usePokemonList } from './hooks/usePokemonList';
 import { usePokemonSearch } from './hooks/usePokemonSearch';
 import { useFavorites } from './hooks/useFavorites';
 import { pokemonService } from './services/pokemonService';
-import { favoritesManager } from './utils/storage';
+import { showNotification } from './utils/notifications';
 import './App.css';
 
 type ViewMode = 'home' | 'favorites' | 'search' | 'filter';
@@ -32,7 +32,6 @@ function App() {
     goToPage,
     nextPage,
     prevPage,
-    refresh,
     canGoNext,
     canGoPrev
   } = usePokemonList(32);
@@ -50,7 +49,7 @@ function App() {
     if ('Notification' in window && Notification.permission === 'default') {
       Notification.requestPermission().then((permission) => {
         if (permission === 'granted') {
-          favoritesManager.sendNotification('¡Bienvenido a PokePWA!');
+          showNotification('¡Bienvenido a PokePWA!');
         }
       });
     }
@@ -117,15 +116,6 @@ function App() {
     setSelectedPokemon(pokemon);
   };
 
-  const handleRefresh = () => {
-    if (viewMode === 'home') {
-      refresh();
-    } else if (viewMode === 'search') {
-      clearResults();
-      setViewMode('home');
-    }
-    favoritesManager.sendNotification('¡Lista actualizada!', '🔄');
-  };
 
   const getCurrentList = () => {
     switch (viewMode) {
@@ -155,6 +145,7 @@ function App() {
               <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Pok%C3%A9_Ball_icon.svg/1026px-Pok%C3%A9_Ball_icon.svg.png" alt="PokePWA Logo" className="w-8 h-8" />
               <h1 className="ml-3 text-xl font-bold text-gray-900">Pokedex PWA</h1>
             </div>
+            
 
             {/* Navigation */}
             <div className="flex items-center space-x-4">
@@ -183,13 +174,6 @@ function App() {
                     {favorites.length}
                   </span>
                 )}
-              </button>
-
-              <button
-                onClick={handleRefresh}
-                className="p-2 rounded-full text-gray-400 hover:text-gray-600 transition-colors"
-              >
-                <RefreshCw size={20} />
               </button>
             </div>
           </div>

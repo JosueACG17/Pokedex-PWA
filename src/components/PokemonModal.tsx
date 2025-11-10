@@ -79,7 +79,7 @@ export const PokemonModal = ({ pokemon, isOpen, onClose }: PokemonModalProps) =>
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={onClose}
-                className="absolute top-6 right-6 p-3 rounded-full bg-white/90 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-200 z-10"
+                className="cursor-pointer absolute top-6 right-6 p-3 rounded-full bg-white/90 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-200 z-10"
               >
                 <X className="w-6 h-6 text-gray-600" />
               </motion.button>
@@ -117,7 +117,7 @@ export const PokemonModal = ({ pokemon, isOpen, onClose }: PokemonModalProps) =>
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.9 }}
                       onClick={() => toggleFavoriteWithPokemon(pokemon)}
-                      className="absolute -bottom-4 -right-4 p-4 rounded-full bg-white shadow-2xl hover:shadow-3xl transition-all duration-300"
+                      className="cursor-pointer absolute -bottom-4 -right-4 p-4 rounded-full bg-white shadow-2xl hover:shadow-3xl transition-all duration-300"
                     >
                       <Heart
                         size={28}

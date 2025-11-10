@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { favoritesManager } from '../utils/storage';
+import { showNotification } from '../utils/notifications';
 
 export const useFavorites = () => {
   const [favorites, setFavorites] = useState<number[]>([]);
@@ -34,7 +35,7 @@ export const useFavorites = () => {
     updateFavorites();
     window.dispatchEvent(new CustomEvent('favoritesUpdated'));
     const displayName = pokemonName ? pokemonName.charAt(0).toUpperCase() + pokemonName.slice(1) : `Pokemon #${pokemonId}`;
-    favoritesManager.sendNotification(`¡${displayName} añadido a tus favoritos!`, '❤️');
+    showNotification(`¡${displayName} añadido a tus favoritos! `);
   };
 
   const removeFavorite = (pokemonId: number, pokemonName?: string) => {
@@ -42,7 +43,7 @@ export const useFavorites = () => {
     updateFavorites();
     window.dispatchEvent(new CustomEvent('favoritesUpdated'));
     const displayName = pokemonName ? pokemonName.charAt(0).toUpperCase() + pokemonName.slice(1) : `Pokemon #${pokemonId}`;
-    favoritesManager.sendNotification(`${displayName} eliminado de favoritos`, '💔');
+    showNotification(`${displayName} eliminado de favoritos `);
   };
 
   const toggleFavorite = (pokemonId: number, pokemonName?: string) => {
