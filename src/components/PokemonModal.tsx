@@ -169,10 +169,10 @@ export const PokemonModal = ({ pokemon, isOpen, onClose }: PokemonModalProps) =>
                           initial={{ scale: 0, rotate: -180 }}
                           animate={{ scale: 1, rotate: 0 }}
                           transition={{ 
-                            delay: 0.7 + index * 0.1, 
-                            duration: 0.5,
+                            delay: 0.1 + index * 0.1, 
+                            duration: 0.1,
                             type: "spring",
-                            stiffness: 300
+                            stiffness: 200
                           }}
                           className="px-6 py-3 text-white font-bold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
                           style={{ backgroundColor: getTypeColor(type.type.name) }}
@@ -191,17 +191,17 @@ export const PokemonModal = ({ pokemon, isOpen, onClose }: PokemonModalProps) =>
                     >
                       <div className="text-center p-4 bg-white/70 backdrop-blur-sm rounded-2xl shadow-lg">
                         <div className="text-3xl font-black text-gray-900">{totalStats}</div>
-                        <div className="text-sm text-gray-600 font-medium uppercase tracking-wide">Estadísticas Totales</div>
+                        <div className="text-xs lg:text-sm text-gray-600 font-medium ">Estadísticas Totales</div>
                       </div>
                       <div className="text-center p-4 bg-white/70 backdrop-blur-sm rounded-2xl shadow-lg">
                         <div className="text-3xl font-black text-gray-900">{pokemon.base_experience}</div>
-                        <div className="text-sm text-gray-600 font-medium uppercase tracking-wide">Experiencia Base</div>
+                        <div className="text-xs lg:text-sm text-gray-600 font-medium ">Experiencia Base</div>
                       </div>
                       <div className="text-center p-4 bg-white/70 backdrop-blur-sm rounded-2xl shadow-lg">
                         <div className="text-3xl font-black text-gray-900">
                           {pokemon.stats.find(s => s.stat.name === 'hp')?.base_stat || 0}
                         </div>
-                        <div className="text-sm text-gray-600 font-medium uppercase tracking-wide">Vida</div>
+                        <div className="text-xs lg:text-sm text-gray-600 font-medium">Vida</div>
                       </div>
                     </motion.div>
                   </motion.div>
@@ -267,19 +267,19 @@ export const PokemonModal = ({ pokemon, isOpen, onClose }: PokemonModalProps) =>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                   <div className="text-center p-4 bg-white rounded-2xl shadow-sm">
                     <div className="text-2xl font-black text-gray-900">{pokemon.height / 10} m</div>
-                    <div className="text-sm text-gray-600 font-medium uppercase tracking-wide">Altura</div>
+                    <div className="text-sm text-gray-600 font-medium tracking-wide">Altura</div>
                   </div>
                   <div className="text-center p-4 bg-white rounded-2xl shadow-sm">
                     <div className="text-2xl font-black text-gray-900">{pokemon.weight / 10} kg</div>
-                    <div className="text-sm text-gray-600 font-medium uppercase tracking-wide">Peso</div>
+                    <div className="text-sm text-gray-600 font-medium tracking-wide">Peso</div>
                   </div>
                   <div className="text-center p-4 bg-white rounded-2xl shadow-sm">
                     <div className="text-2xl font-black text-gray-900">{pokemon.base_experience}</div>
-                    <div className="text-sm text-gray-600 font-medium uppercase tracking-wide">Experiencia Base</div>
+                    <div className="text-sm text-gray-600 font-medium tracking-wide">Experiencia Base</div>
                   </div>
                   <div className="text-center p-4 bg-white rounded-2xl shadow-sm">
                     <div className="text-2xl font-black text-gray-900">{pokemon.abilities?.length || 0}</div>
-                    <div className="text-sm text-gray-600 font-medium uppercase tracking-wide">Habilidades</div>
+                    <div className="text-sm text-gray-600 font-medium tracking-wide">Habilidades</div>
                   </div>
                 </div>
 
